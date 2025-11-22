@@ -18,52 +18,74 @@ logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
 
-@Client.on_message(filters.command("start") & filters.incoming)
+@Client.on_message(filters.command("start") & filters.private)
 async def start(client, message):
+    # Chat Type Check
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
-                InlineKeyboardButton('🤖 𝚄𝚙𝚍𝚊𝚝𝚎𝚜', url='https://t.me/cinecollect')
+                InlineKeyboardButton(' Updates ', url='t.me/your_updates_channel'),
+                InlineKeyboardButton(' ℹ️ Help ', url='t.me/your_support_group')
             ],
             [
-                InlineKeyboardButton('ℹ️ 𝙷𝚎𝚕𝚙', url=f"https://t.me/{temp.U_NAME}?start=help"),
+                InlineKeyboardButton(' 📣 Share ', switch_inline_query='')
             ]
-            ]
+        ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
-        await asyncio.sleep(2) # 😢 https://github.com/8769ANURAG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
-        if not await db.get_chat(message.chat.id):
-            total=await client.get_chat_members_count(message.chat.id)
-            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
-            await db.add_chat(message.chat.id, message.chat.title)
-        return 
+        await message.reply_text(script.START_TXT.format(
+            message.from_user.mention, 
+            message.from_user.id
+        ), reply_markup=reply_markup)
+        return
+
+    # New User Logging
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        await client.send_message(
+            LOG_CHANNEL, 
+            script.START_TXT.format(chat_id=message.chat.id, title=message.chat.title)
+        )
+        return
+
+    # Private Message Command Handling
     if len(message.command) != 2:
-        # Line 44 မှ စတင်ပြီး အစားထိုး ထည့်သွင်းရမည့် code
-    buttons = [
-    [InlineKeyboardButton('➕ Bot ကို Group ထဲ ထည့်ရန် ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')],
-    [
-        InlineKeyboardButton('🎥 Request Group', url='https://t.me/+yYyWvmLz0yRjZmJl'), 
-        InlineKeyboardButton('🤖 Updates Channel', url='https://t.me/addlist/wx7W6kspBcMwZmJl') 
-    ],
-    [
-        InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-        InlineKeyboardButton('😊 About', callback_data='about')
-    ]
-]
-
-# Line 53 မှာ InlineKeyboardMarkup(buttons) သည် အလုပ်လုပ်ပါလိမ့်မည်။
-
+        buttons = [
+            [
+                InlineKeyboardButton(' Updates ', url='t.me/your_updates_channel'),
+                InlineKeyboardButton(' ℹ️ Help ', url='t.me/your_support_group')
+            ],
+            [
+                InlineKeyboardButton(' 📣 Share ', switch_inline_query='')
+            ]
+        ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+        
+        # Greeting Logic (Time-based text)
+        current_time = datetime.datetime.now(pytz.timezone('Asia/Rangoon'))
+        curr_time = current_time.hour
+        if curr_time < 12:
+            gtxt = "GOOD MORNING 👋"
+        elif curr_time < 17:
+            gtxt = "GOOD AFTERNOON 🌞"
+        elif curr_time < 21:
+            gtxt = "GOOD EVENING 🌆"
+        else:
+            gtxt = "GOOD NIGHT 🌙"
+
+        # Send Message with Photo
+        await client.send_photo(
+            chat_id=message.chat.id,
+            photo=random.choice(PICS),  # PICS variable မှ ပုံတစ်ခုကို ရွေး၍ ပို့ပါမည်
+            caption=script.START_TXT.format(message.from_user.mention, gtxt),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
         return
+
+    # User gave a direct URL, so handle it (This is the original logic continuation)
+    file_id = message.command[1]
+    # ... (the rest of the code that follows this part remains as is)
+
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
