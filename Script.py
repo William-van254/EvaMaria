@@ -46,9 +46,9 @@ class Script(object):
 
 <b>Commands and Usage:</b>
 - /filter - <code>add a filter in chat</code>
-• /filters - <code>list all the filters of a chat</code>
-• /del - <code>delete a specific filter in chat</code>
-• /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
+- /filters - <code>list all the filters of a chat</code>
+- /del - <code>delete a specific filter in chat</code>
+- /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
     BUTTON_TXT = """Help: <b>Buttons</b>
 
 - Eva Maria Supports both url and alert inline buttons.
