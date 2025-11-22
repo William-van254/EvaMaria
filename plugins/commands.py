@@ -1,4 +1,4 @@
-import os
+importmportmport os
 import logging
 import random
 import asyncio
@@ -41,15 +41,21 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
-        buttons = [[
-            InlineKeyboardButton('➕ 𝙰𝚍𝚍 𝙼𝚎 𝚃𝚘 𝚈𝚘𝚞𝚛 𝙶𝚛𝚘𝚞𝚙𝚜 ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('🔍 𝚂𝚎𝚊𝚛𝚌𝚑', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 𝚄𝚙𝚍𝚊𝚝𝚎𝚜', url='https://t.me/cinecollect')
-            ],[
-            InlineKeyboardButton('ℹ️ 𝙷𝚎𝚕𝚙', callback_data='help'),
-            InlineKeyboardButton('😊 𝙰𝚋𝚘𝚞𝚝', callback_data='about')
-        ]]
+        # Line 44 မှ စတင်ပြီး အစားထိုး ထည့်သွင်းရမည့် code
+buttons = [
+    [InlineKeyboardButton('➕ Bot ကို Group ထဲ ထည့်ရန် ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')],
+    [
+        InlineKeyboardButton('🎥 Request Group', url='https://t.me/+yYyWvmLz0yRjZmJl'), 
+        InlineKeyboardButton('🤖 Updates Channel', url='https://t.me/addlist/wx7W6kspBcMwZmJl') 
+    ],
+    [
+        InlineKeyboardButton('ℹ️ Help', callback_data='help'),
+        InlineKeyboardButton('😊 About', callback_data='about')
+    ]
+]
+
+# Line 53 မှာ InlineKeyboardMarkup(buttons) သည် အလုပ်လုပ်ပါလိမ့်မည်။
+
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
             photo=random.choice(PICS),
