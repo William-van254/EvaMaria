@@ -1,49 +1,34 @@
-class script(object):
-    START_TXT = """Yo...Yo...ANURAG {} 💖
-I'm Powerful Auto-Filter Bot You Can Use Me As A Auto-filter in Your Group
+class Script(object):
+    # START_TXT ကို Line 2 မှာ စပါမယ်
+    START_TXT = """မင်္ဂလာပါ {} 👋
+**Cine Collect Bot** ကနေ ကြိုဆိုပါတယ်။🫶
+ကြိုက်နှစ်သက်ရာ **Movie/Series** နာမည်ကို ရိုက်ထည့်ပြီး ရှာဖွေနိုင်ပါတယ်။
 
-Its Easy To Use Me; Just Add Me To Your Group As Admin, 
-Thats All, i will Provide Movies There...🤓🤪
+**💡 ကူညီမှုလိုပါက အောက်ပါ Help ကို နှိပ်ပါ**"""
 
-
-⚠️More Help Check Help Button Below
-
-😎 Powered by @MOVIES_ZILAA
-
-©️ Maintained By @GuruBhai11"""
+    # HELP_TXT ကို ဒီအတိုင်း ထားပါ
     HELP_TXT = """
-    🙋🏻‍♂️   Hellooo  {} 🤓
+    🙋🏻‍♂️ **အကူအညီ လိုအပ်ပါက**
+    
+○  **ဆက်သွယ်ရန် :** @williamvan23 / @williamvan1
+    
+○  **အခြား Commands များ**
+    /start - Bot ကို စစ်ဆေးခြင်း
+    /status - Bot အခြေအနေ စစ်ဆေးခြင်း
+    /info  - User အချက်အလက်
+    /id    - ID စစ်ဆေးခြင်း
+"""
 
-○  Tutorial video is here @sources_cods
-
-○  it's Note Complicated...🤓
-
-○  Search using inline mode
-This methord works on any chat, Just type @Filters_Ro_Bot and then leave a space and search any movie you want...
-
-○ Available Commands
-     
- /start - Check I'm Alive..
- /status - Bot Status
- /info - User info 
- /id - User id
- /stats - Db status  
- /broadcast - Broadcast (owner only)
-
-○ Notice 📙:-
-
-○Dont Spam Me...🤒
-
-😎 Powered by @MOVIES_ZILAA
-
-©️ Maintained By @GuruBhai11"""
+    # ABOUT_TXT ကို ဒီအတိုင်း ထားပါ
     ABOUT_TXT = """✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
-✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/Am_RoBots>ᴀᴍ_ᴛᴇᴄʜ</a>
-✯ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈: 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼
-✯ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴: 𝙿𝚈𝚃𝙷𝙾𝙽 𝟹
-✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
-✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙷𝙴𝚁𝙾𝙺𝚄
-✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
+\n**Cine Collect ၏ ကိုယ်ပိုင် Bot တစ်ခု ဖြစ်ပါသည်။**
+    
+✯ Main Channel : <a href='https://t.me/cinecollect'>Cine Collect Channel</a>"""
+
+    SOURCE_TXT = """<b>NOTE:</b>
+# ... (အောက်က Code တွေ မပြင်ဘဲ ဆက်သွားပါ)
+
+
     SOURCE_TXT = """<b>NOTE:</b>
 - Eva Maria is a open source project. 
 - Source - https://github.com/8769ANURAG/EvaMaria  
@@ -96,7 +81,7 @@ This methord works on any chat, Just type @Filters_Ro_Bot and then leave a space
 
 <b>Commands and Usage:</b>
 • /connect  - <code>connect a particular chat to your PM</code>
-• /disconnect  - <code>disconnect from a chat</code>
+• /disconnect  - <codecodeconnect from a chat</code>
 • /connections - <code>list all your connections</code>"""
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
@@ -111,9 +96,7 @@ these are the extra features of Eva Maria
     ADMIN_TXT = """Help: <b>Admin mods</b>
 
 <b>NOTE:</b>
-This module only works for my admins
-
-<b>Commands and Usage:</b>
+This module only works for my admiadmins>Commands and Usage:</b>
 • /logs - <code>to get the rescent errors</code>
 • /stats - <code>to get status of files in db.</code>
 • /delete - <code>to delete a specific file from db.</code>
@@ -126,7 +109,7 @@ This module only works for my admins
 • /channel - <code>to get list of total connected channels</code>
 • /broadcast - <code>to broadcast a message to all users</code>"""
     STATUS_TXT = """★ 𝚃𝙾𝚃𝙰𝙻 𝙵𝙸𝙻𝙴𝚂: <code>{}</code>
-★ 𝚃𝙾𝚃𝙰𝙻 𝚄𝚂𝙴𝚁𝚂: <code>{}</code>
+★ 𝚃𝙾𝚃𝙰𝙻 𝚄𝚂𝚄𝚂𝙴𝚁𝚂ode>{}</code>
 ★ 𝚃𝙾𝚃𝙰𝙻 𝙲𝙷𝙰𝚃𝚂: <code>{}</code>
 ★ 𝚄𝚂𝙴𝙳 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> 
 ★ 𝙵𝚁𝙴𝙴 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> """
