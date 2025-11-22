@@ -42,7 +42,7 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         # Line 44 မှ စတင်ပြီး အစားထိုး ထည့်သွင်းရမည့် code
-buttons = [
+    buttons = [
     [InlineKeyboardButton('➕ Bot ကို Group ထဲ ထည့်ရန် ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')],
     [
         InlineKeyboardButton('🎥 Request Group', url='https://t.me/+yYyWvmLz0yRjZmJl'), 
